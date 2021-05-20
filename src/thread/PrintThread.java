@@ -2,7 +2,7 @@ package thread;
 
 import model.PrintColor;
 
-public class PrintThread implements Runnable{
+public class PrintThread extends Thread{
 	private PrintColor printC;
 	private int max;
 	private int sleep;
@@ -18,6 +18,19 @@ public class PrintThread implements Runnable{
 		this.cursor1= cursor1;
 		this.cursor2 =cursor2;
 		this.clean= clean;
+	}
+	
+	public void run() {
+
+			try {
+				printC.printB(max, sleep, color, cursor1, cursor2, clean);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+		
+		
 	}
 	public PrintColor getPrintC() {
 		return printC;
@@ -60,19 +73,6 @@ public class PrintThread implements Runnable{
 	}
 	public void setClean(int clean) {
 		this.clean = clean;
-	}
-
-	public void run() {
-
-			try {
-				printC.printB(max, sleep, color, cursor1, cursor2, clean);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-		
-		
 	}
 
 
